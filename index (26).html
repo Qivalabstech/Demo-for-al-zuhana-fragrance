@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AL ZUHANA FRAGRANCE — A Scent That Becomes Memory</title>
+<meta name="description" content="AL ZUHANA FRAGRANCE — premium long-lasting perfumes, imported scents inspired by London. Korvex, Avior, Velina, Amoura." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  :root{
+    --ivory:#F3EEE5;
+    --sand:#E6DAC6;
+    --charcoal:#1B1713;
+    --ink:#100E0B;
+    --champagne:#B79766;
+    --champagne-soft:#D8C39F;
+    --line: rgba(27,23,19,0.14);
+    --max: 1320px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ivory);
+    color:var(--charcoal);
+    font-family:'Manrope', sans-serif;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+    margin:0;
+  }
+  p{ margin:0; }
+  a{ color:inherit; text-decoration:none; }
+  img{ display:block; max-width:100%; }
+  .wrap{ max-width:var(--max); margin:0 auto; padding:0 32px; }
+  @media(max-width:640px){ .wrap{ padding:0 20px; } }
+
+  .label{
+    font-size:12px;
+    letter-spacing:0.16em;
+    font-weight:600;
+    color:var(--champagne);
+    text-transform:uppercase;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:26px 0;
+    transition:padding .4s ease, background .4s ease, border-color .4s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    padding:16px 0;
+    background:rgba(243,238,229,0.86);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; }
+  .logo{
+    font-family:'Cormorant Garamond', serif;
+    font-size:22px;
+    letter-spacing:0.24em;
+    font-weight:500;
+  }
+  .nav-links{ display:flex; gap:44px; list-style:none; padding:0; margin:0; }
+  .nav-links a{
+    font-size:13px; letter-spacing:0.06em; font-weight:500;
+    position:relative; padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background:var(--charcoal); transition:width .35s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-right{ display:flex; align-items:center; gap:26px; }
+  .icon-btn{ display:flex; }
+  .icon-btn svg{ width:18px; height:18px; }
+  .nav-cta{
+    font-size:12px; letter-spacing:0.1em; font-weight:600;
+    border:1px solid var(--charcoal); padding:9px 20px; border-radius:2px;
+    transition:background .3s ease, color .3s ease;
+  }
+  .nav-cta:hover{ background:var(--charcoal); color:var(--ivory); }
+  .nav-mobile-toggle{ display:none; background:none; border:none; cursor:pointer; padding:0; }
+  @media(max-width:900px){
+    .nav-links{ display:none; }
+    .nav-cta{ display:none; }
+    .nav-mobile-toggle{ display:block; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; min-height:100svh; display:flex; align-items:flex-end;
+    padding:0 0 90px; overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute; inset:0; z-index:0;
+    background:linear-gradient(180deg, #100E0B 0%, #171310 55%, #1B1713 100%);
+  }
+  .hero-bg::after{
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(circle at 68% 38%, rgba(183,151,102,0.16), transparent 55%);
+  }
+  .hero-grain{
+    position:absolute; inset:0; opacity:0.05; mix-blend-mode:overlay; pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .hero-inner{
+    position:relative; z-index:2; width:100%;
+    display:grid; grid-template-columns:1.1fr 0.9fr; align-items:end; gap:40px;
+  }
+  .hero-copy{ color:var(--ivory); padding-bottom:8px; }
+  .hero-eyebrow{
+    font-size:12px; letter-spacing:0.22em; color:var(--champagne-soft);
+    text-transform:uppercase; font-weight:600; margin-bottom:22px;
+    opacity:0; transform:translateY(12px);
+  }
+  .hero-title{
+    font-size:clamp(48px, 7vw, 92px); line-height:0.98; color:var(--ivory);
+    font-weight:500;
+  }
+  .hero-title span{ display:block; overflow:hidden; }
+  .hero-title span em{ font-style:italic; color:var(--champagne-soft); font-weight:400; }
+  .hero-title .line-inner{ display:block; transform:translateY(115%); }
+  .hero-sub{
+    max-width:380px; margin-top:26px; font-size:16px; line-height:1.6;
+    color:rgba(243,238,229,0.72); opacity:0; transform:translateY(12px);
+  }
+  .hero-ctas{ display:flex; gap:18px; margin-top:38px; opacity:0; transform:translateY(12px); }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:12px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase;
+    padding:15px 26px; border-radius:2px; transition:all .3s ease;
+  }
+  .btn-primary{ background:var(--ivory); color:var(--ink); }
+  .btn-primary:hover{ background:var(--champagne-soft); }
+  .btn-ghost{ border:1px solid rgba(243,238,229,0.4); color:var(--ivory); }
+  .btn-ghost:hover{ border-color:var(--ivory); }
+
+  .hero-visual{
+    position:relative; align-self:end; opacity:0; transform:translateY(28px);
+  }
+  .hero-visual img{
+    width:100%; border-radius:2px;
+    box-shadow:0 40px 80px -30px rgba(0,0,0,0.7);
+  }
+  .hero-visual-tag{
+    position:absolute; left:-18px; bottom:32px; background:var(--ivory); color:var(--ink);
+    padding:14px 18px; max-width:200px; font-size:12px; line-height:1.5;
+    box-shadow:0 20px 40px -20px rgba(0,0,0,0.5);
+  }
+  .hero-visual-tag .serif{ font-size:19px; display:block; margin-bottom:4px; }
+  @media(max-width:900px){
+    .hero{ padding-bottom:56px; }
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero-visual{ max-width:280px; margin:0 auto; }
+    .hero-visual-tag{ display:none; }
+  }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee-section{
+    background:var(--charcoal); color:var(--ivory); padding:36px 0; overflow:hidden;
+    border-top:1px solid rgba(243,238,229,0.08); border-bottom:1px solid rgba(243,238,229,0.08);
+  }
+  .marquee-track{ display:flex; white-space:nowrap; will-change:transform; }
+  .marquee-track span{
+    font-family:'Cormorant Garamond', serif; font-style:italic; font-weight:400;
+    font-size:clamp(28px,4vw,44px); padding:0 34px; color:var(--champagne-soft);
+    display:flex; align-items:center; gap:34px;
+  }
+  .marquee-track span.plain{ color:rgba(243,238,229,0.55); font-style:normal; }
+  .dot{ width:6px; height:6px; border-radius:50%; background:var(--champagne); display:inline-block; }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ padding:120px 0; }
+  @media(max-width:768px){ section{ padding:80px 0; } }
+
+  /* ---------- BRAND INTRO ---------- */
+  .intro-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:start;
+  }
+  .intro-title{ font-size:clamp(34px,4.4vw,54px); line-height:1.08; }
+  .intro-body{ padding-top:10px; }
+  .intro-body p{ font-size:16px; line-height:1.75; color:#3B342C; max-width:420px; }
+  .intro-body .label{ margin-bottom:16px; display:block; }
+  @media(max-width:800px){ .intro-grid{ grid-template-columns:1fr; gap:28px; } }
+
+  /* ---------- FEATURED ---------- */
+  .featured{ background:var(--sand); }
+  .featured-grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; align-items:center;
+  }
+  .featured-img{ position:relative; }
+  .featured-img img{ width:100%; border-radius:2px; box-shadow:0 40px 70px -35px rgba(27,23,19,0.4); }
+  .featured-copy .label{ margin-bottom:18px; display:block; }
+  .featured-copy h2{ font-size:clamp(38px,5vw,64px); line-height:1.02; }
+  .featured-copy .family{ font-size:14px; letter-spacing:0.08em; color:var(--champagne); margin-top:14px; display:block; text-transform:uppercase; font-weight:600; }
+  .featured-copy .desc{ margin-top:22px; font-size:16px; line-height:1.75; color:#3B342C; max-width:420px; }
+  .featured-notes{ display:flex; gap:28px; margin-top:34px; flex-wrap:wrap; }
+  .featured-notes div{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#6b5f4e; }
+  .featured-notes strong{ display:block; font-family:'Cormorant Garamond',serif; font-size:18px; color:var(--charcoal); font-weight:500; text-transform:none; letter-spacing:0; margin-top:4px; }
+  .featured-copy .btn-primary{ margin-top:38px; background:var(--charcoal); color:var(--ivory); }
+  .featured-copy .btn-primary:hover{ background:var(--ink); }
+  @media(max-width:900px){ .featured-grid{ grid-template-columns:1fr; gap:34px; } }
+
+  /* ---------- COLLECTION ---------- */
+  .collection-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:64px; gap:24px; flex-wrap:wrap; }
+  .collection-head h2{ font-size:clamp(34px,4.6vw,56px); }
+  .collection-head p{ color:#6b5f4e; max-width:280px; font-size:15px; line-height:1.6; }
+
+  .col-grid{
+    display:grid; grid-template-columns:repeat(12, 1fr); gap:28px;
+  }
+  .prod{ position:relative; overflow:hidden; border-radius:2px; cursor:pointer; }
+  .prod-a{ grid-column:span 7; }
+  .prod-b{ grid-column:span 5; }
+  .prod-c{ grid-column:span 5; }
+  .prod-d{ grid-column:span 7; }
+  .prod img{
+    width:100%; height:100%; object-fit:cover; aspect-ratio:4/5;
+    transition:transform .8s cubic-bezier(.16,1,.3,1);
+  }
+  .prod:hover img{ transform:scale(1.045); }
+  .prod-overlay{
+    position:absolute; left:0; right:0; bottom:0; padding:28px;
+    background:linear-gradient(0deg, rgba(16,14,11,0.82) 0%, rgba(16,14,11,0) 65%);
+    color:var(--ivory); display:flex; justify-content:space-between; align-items:flex-end;
+    transform:translateY(6px); transition:transform .5s ease;
+  }
+  .prod:hover .prod-overlay{ transform:translateY(0); }
+  .prod-overlay h3{ font-size:26px; }
+  .prod-overlay .fam{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--champagne-soft); margin-top:4px; display:block; }
+  .prod-arrow{
+    width:38px; height:38px; border-radius:50%; border:1px solid rgba(243,238,229,0.5);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    opacity:0; transform:translateX(-6px); transition:all .4s ease;
+  }
+  .prod:hover .prod-arrow{ opacity:1; transform:translateX(0); }
+  @media(max-width:800px){
+    .col-grid{ grid-template-columns:1fr; gap:20px; }
+    .prod-a,.prod-b,.prod-c,.prod-d{ grid-column:span 1; }
+  }
+
+  /* ---------- DISCOVERY / FILTER ---------- */
+  .discover{ background:var(--charcoal); color:var(--ivory); }
+  .discover .label{ color:var(--champagne-soft); }
+  .discover h2{ font-size:clamp(32px,4.4vw,50px); color:var(--ivory); margin-top:18px; max-width:560px; line-height:1.15; }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:44px; }
+  .chip{
+    font-size:13px; letter-spacing:0.04em; padding:11px 20px; border:1px solid rgba(243,238,229,0.25);
+    border-radius:30px; color:rgba(243,238,229,0.75); cursor:pointer; transition:all .3s ease;
+    background:none;
+  }
+  .chip.active, .chip:hover{ border-color:var(--champagne-soft); color:var(--ivory); background:rgba(183,151,102,0.1); }
+  .discover-list{ margin-top:52px; display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(243,238,229,0.12); border-top:1px solid rgba(243,238,229,0.12); }
+  .discover-item{
+    background:var(--charcoal); padding:30px 26px; transition:background .3s ease; cursor:default;
+  }
+  .discover-item:hover{ background:#211c17; }
+  .discover-item .num{ font-size:12px; color:var(--champagne-soft); letter-spacing:0.08em; }
+  .discover-item h4{ font-family:'Cormorant Garamond',serif; font-size:24px; margin-top:14px; font-weight:500; }
+  .discover-item span{ display:block; margin-top:8px; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:rgba(243,238,229,0.5); }
+  @media(max-width:800px){ .discover-list{ grid-template-columns:1fr 1fr; } }
+  @media(max-width:480px){ .discover-list{ grid-template-columns:1fr; } }
+
+  /* ---------- SIGNATURE ---------- */
+  .signature{ position:relative; }
+  .sig-grid{ display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:0; }
+  .sig-img{ position:relative; }
+  .sig-img img{ width:100%; }
+  .sig-copy{ padding:0 12% 0 8%; }
+  .sig-copy .label{ margin-bottom:20px; display:block; }
+  .sig-copy h2{ font-size:clamp(36px,5vw,58px); line-height:1.05; }
+  .sig-copy .type{ margin-top:16px; font-size:15px; color:#6b5f4e; letter-spacing:0.04em; }
+  .sig-copy p.desc{ margin-top:26px; font-size:16px; line-height:1.75; color:#3B342C; max-width:380px; }
+  .sig-copy .btn-primary{ margin-top:34px; background:var(--charcoal); color:var(--ivory); }
+  .sig-copy .btn-primary:hover{ background:var(--ink); }
+  @media(max-width:900px){
+    .sig-grid{ grid-template-columns:1fr; }
+    .sig-copy{ padding:56px 0 0; }
+  }
+
+  /* ---------- STORY ---------- */
+  .story{ background:var(--sand); }
+  .story-grid{ display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; }
+  .story-copy .label{ margin-bottom:20px; display:block; }
+  .story-copy h2{ font-size:clamp(32px,4.4vw,50px); line-height:1.12; max-width:460px; }
+  .story-copy p{ margin-top:22px; font-size:16px; line-height:1.75; color:#3B342C; max-width:420px; }
+  .story-img{ position:relative; }
+  .story-img img{ width:100%; border-radius:2px; }
+  .story-img .frame{
+    position:absolute; inset:18px; border:1px solid rgba(243,238,229,0.5); pointer-events:none;
+  }
+  @media(max-width:900px){ .story-grid{ grid-template-columns:1fr; gap:36px; } .story-img{ order:-1; } }
+
+  /* ---------- INSTAGRAM ---------- */
+  .social-head{ text-align:center; margin-bottom:56px; }
+  .social-head h2{ font-size:clamp(32px,4.4vw,50px); }
+  .social-head p{ margin-top:14px; color:#6b5f4e; font-size:15px; }
+  .social-head a{ color:var(--champagne); font-weight:600; }
+  .masonry{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .masonry img{ width:100%; height:100%; object-fit:cover; border-radius:2px; transition:transform .5s ease, opacity .3s ease; }
+  .masonry a{ display:block; overflow:hidden; border-radius:2px; }
+  .masonry a:hover img{ transform:scale(1.05); opacity:0.9; }
+  .masonry .m1{ grid-row:span 2; }
+  .masonry img{ aspect-ratio:1/1; }
+  .masonry .m1 img{ aspect-ratio:1/2.06; }
+  @media(max-width:800px){ .masonry{ grid-template-columns:repeat(2,1fr); } .masonry .m1{ grid-row:span 1; } .masonry .m1 img{ aspect-ratio:1/1; } }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    position:relative; min-height:78vh; display:flex; align-items:center; justify-content:center;
+    text-align:center; color:var(--ivory); overflow:hidden;
+  }
+  .final-bg{ position:absolute; inset:0; background:linear-gradient(180deg,#171310,#0E0C0A); }
+  .final-bg::after{ content:''; position:absolute; inset:0; background:radial-gradient(circle at 50% 30%, rgba(183,151,102,0.14), transparent 60%); }
+  .final-inner{ position:relative; z-index:2; padding:0 24px; }
+  .final-inner .label{ color:var(--champagne-soft); }
+  .final-inner h2{ font-size:clamp(38px,6.4vw,78px); line-height:1.02; margin-top:20px; }
+  .final-inner .btn{ margin-top:42px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--ink); color:rgba(243,238,229,0.7); padding:70px 0 34px; }
+  .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; }
+  .footer-logo{ font-family:'Cormorant Garamond',serif; font-size:24px; color:var(--ivory); letter-spacing:0.2em; }
+  .footer-grid p{ margin-top:16px; font-size:14px; line-height:1.7; max-width:260px; color:rgba(243,238,229,0.5); }
+  .footer-col h5{ font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--champagne-soft); margin-bottom:18px; font-weight:600; }
+  .footer-col ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px; }
+  .footer-col a{ font-size:14px; color:rgba(243,238,229,0.65); transition:color .3s ease; }
+  .footer-col a:hover{ color:var(--ivory); }
+  .footer-bottom{ margin-top:60px; padding-top:26px; border-top:1px solid rgba(243,238,229,0.12); display:flex; justify-content:space-between; font-size:12px; color:rgba(243,238,229,0.4); flex-wrap:wrap; gap:10px; }
+  @media(max-width:800px){ .footer-grid{ grid-template-columns:1fr 1fr; } }
+
+  /* ---------- REVEAL UTILITY ---------- */
+  .reveal{ opacity:0; transform:translateY(28px); }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1 !important; transform:none !important; }
+    .hero-eyebrow,.hero-sub,.hero-ctas,.hero-visual,.hero-title .line-inner{ opacity:1 !important; transform:none !important; }
+  }
+
+  /* mobile nav drawer */
+  .mnav{
+    position:fixed; inset:0; background:var(--ivory); z-index:200;
+    transform:translateY(-100%); transition:transform .45s cubic-bezier(.16,1,.3,1);
+    display:flex; flex-direction:column; padding:26px 24px;
+  }
+  .mnav.open{ transform:translateY(0); }
+  .mnav-top{ display:flex; justify-content:space-between; align-items:center; }
+  .mnav ul{ list-style:none; padding:0; margin:60px 0 0; display:flex; flex-direction:column; gap:28px; }
+  .mnav a{ font-family:'Cormorant Garamond',serif; font-size:34px; }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header id="siteHeader">
+  <nav class="wrap">
+    <a href="#top" class="logo">AL ZUHANA</a>
+    <ul class="nav-links">
+      <li><a href="#collection">Collection</a></li>
+      <li><a href="#story">Story</a></li>
+      <li><a href="#discover">Fragrance</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a class="nav-cta" href="#contact">Shop the Collection</a>
+      <button class="nav-mobile-toggle" id="mnavToggle" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<div class="mnav" id="mnav">
+  <div class="mnav-top">
+    <span class="logo">AL ZUHANA</span>
+    <button id="mnavClose" aria-label="Close menu" style="background:none;border:none;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+    </button>
+  </div>
+  <ul>
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#story">Story</a></li>
+    <li><a href="#discover">Fragrance</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <div class="hero-eyebrow" id="heroEyebrow">AL ZUHANA FRAGRANCE — LONDON-INSPIRED SCENTS</div>
+      <h1 class="hero-title">
+        <span class="line"><span class="line-inner">A SCENT THAT</span></span>
+        <span class="line"><span class="line-inner">BECOMES <em>MEMORY</em>.</span></span>
+      </h1>
+      <p class="hero-sub" id="heroSub">Premium, long-lasting eau de parfum — the secret ingredient from London, poured into every bottle. Four fragrances. One unmistakable presence.</p>
+      <div class="hero-ctas" id="heroCtas">
+        <a href="#collection" class="btn btn-primary">Explore Collection</a>
+        <a href="#story" class="btn btn-ghost">Discover the House</a>
+      </div>
+    </div>
+    <div class="hero-visual" id="heroVisual">
+      <img src="assets/korvex_edit.jpg" alt="Korvex eau de parfum by Al Zuhana Fragrance" />
+      <div class="hero-visual-tag"><span class="serif">Korvex</span>Elegance in every breath — for love.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>ESSENCE<span class="dot"></span></span>
+    <span class="plain">PRESENCE</span>
+    <span>MEMORY<span class="dot"></span></span>
+    <span class="plain">DESIRE</span>
+    <span>AL ZUHANA<span class="dot"></span></span>
+    <span class="plain">ELEGANCE IN EVERY BREATH</span>
+    <span>ESSENCE<span class="dot"></span></span>
+    <span class="plain">PRESENCE</span>
+    <span>MEMORY<span class="dot"></span></span>
+    <span class="plain">DESIRE</span>
+    <span>AL ZUHANA<span class="dot"></span></span>
+    <span class="plain">ELEGANCE IN EVERY BREATH</span>
+  </div>
+</div>
+
+<!-- ============ BRAND INTRO ============ -->
+<section>
+  <div class="wrap intro-grid">
+    <h2 class="intro-title reveal">More than fragrance.<br>A signature of<br>presence.</h2>
+    <div class="intro-body reveal">
+      <span class="label">The House</span>
+      <p>AL ZUHANA FRAGRANCE brings the secret ingredient from London into every bottle — premium imported scents, blended for a presence that lingers long after you've left the room. Each fragrance carries the same promise: elegance in every breath.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED FRAGRANCE ============ -->
+<section class="featured">
+  <div class="wrap featured-grid">
+    <div class="featured-img reveal">
+      <img src="assets/korvex_edit.jpg" alt="Korvex by Al Zuhana Fragrance" />
+    </div>
+    <div class="featured-copy reveal">
+      <span class="label">Featured Fragrance</span>
+      <h2>Korvex</h2>
+      <span class="family">Eau de Parfum · For Love</span>
+      <p class="desc">Built for the bold. Korvex is designed to leave a lasting impression — a powerful, magnetic scent with a luxury feel that stays with you all day. One spray, and the aura changes.</p>
+      <div class="featured-notes">
+        <div>Format<strong>50ml · EDP</strong></div>
+        <div>Origin<strong>London-Inspired</strong></div>
+        <div>Mood<strong>Bold · Unforgettable</strong></div>
+      </div>
+      <a href="#contact" class="btn btn-primary">Discover the Fragrance</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLLECTION ============ -->
+<section id="collection">
+  <div class="wrap">
+    <div class="collection-head reveal">
+      <h2>The Collection</h2>
+      <p>Four fragrances from Al Zuhana — discover them below.</p>
+    </div>
+    <div class="col-grid">
+      <a href="#contact" class="prod prod-a reveal">
+        <img src="assets/korvex_edit.jpg" alt="Korvex" />
+        <div class="prod-overlay">
+          <div><h3>Korvex</h3><span class="fam">For Love · EDP</span></div>
+          <div class="prod-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+      </a>
+      <a href="#contact" class="prod prod-b reveal">
+        <img src="assets/avior_edit.jpg" alt="Avior" />
+        <div class="prod-overlay">
+          <div><h3>Avior</h3><span class="fam">Oil-Based · EDP</span></div>
+          <div class="prod-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+      </a>
+      <a href="#contact" class="prod prod-c reveal">
+        <img src="assets/velina_edit.jpg" alt="Velina" />
+        <div class="prod-overlay">
+          <div><h3>Velina</h3><span class="fam">Floral · EDP</span></div>
+          <div class="prod-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+      </a>
+      <a href="#contact" class="prod prod-d reveal">
+        <img src="assets/amoura_edit.jpg" alt="Amoura" />
+        <div class="prod-overlay">
+          <div><h3>Amoura</h3><span class="fam">For Love · EDP</span></div>
+          <div class="prod-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FRAGRANCE DISCOVERY ============ -->
+<section class="discover" id="discover">
+  <div class="wrap">
+    <span class="label reveal">Fragrance Discovery</span>
+    <h2 class="reveal">Four moods, one house. Find the fragrance that feels like you.</h2>
+    <div class="chip-row reveal">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="bold">Bold</button>
+      <button class="chip" data-filter="floral">Floral</button>
+      <button class="chip" data-filter="unisex">Unisex</button>
+    </div>
+    <div class="discover-list reveal">
+      <div class="discover-item" data-tag="bold unisex">
+        <span class="num">01</span>
+        <h4>Korvex</h4>
+        <span>Bold · For Love</span>
+      </div>
+      <div class="discover-item" data-tag="bold unisex">
+        <span class="num">02</span>
+        <h4>Avior</h4>
+        <span>Oil-Based · Strong</span>
+      </div>
+      <div class="discover-item" data-tag="floral">
+        <span class="num">03</span>
+        <h4>Velina</h4>
+        <span>Floral · Elegant</span>
+      </div>
+      <div class="discover-item" data-tag="bold">
+        <span class="num">04</span>
+        <h4>Amoura</h4>
+        <span>Bold · Unforgettable</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIGNATURE PRODUCT ============ -->
+<section class="signature">
+  <div class="sig-grid">
+    <div class="sig-img reveal">
+      <img src="assets/amoura_edit.jpg" alt="Amoura by Al Zuhana Fragrance" />
+    </div>
+    <div class="sig-copy reveal">
+      <span class="label">Signature</span>
+      <h2>Amoura</h2>
+      <span class="type">Eau de Parfum · For Love</span>
+      <p class="desc">Made for confidence and an unforgettable presence. Every spray speaks luxury; every note creates attraction. This is not just a perfume — it's an aura.</p>
+      <a href="#contact" class="btn btn-primary">Discover</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="story" id="story">
+  <div class="wrap story-grid">
+    <div class="story-copy reveal">
+      <span class="label">Our Story</span>
+      <h2>The secret ingredient, from London.</h2>
+      <p>Al Zuhana Fragrance began with a simple idea: premium, imported scents shouldn't be out of reach. Every bottle is built around a London-inspired base, blended for longevity and presence — so the fragrance you choose says as much about you as the room you just left.</p>
+    </div>
+    <div class="story-img reveal">
+      <img src="assets/velina_edit.jpg" alt="Velina bottle detail" />
+      <div class="frame"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSTAGRAM ============ -->
+<section>
+  <div class="wrap">
+    <div class="social-head reveal">
+      <h2>Follow the Scent</h2>
+      <p>Selected moments from the house — <a href="https://www.instagram.com/alzuhanafragrance/" target="_blank" rel="noopener">@alzuhanafragrance</a></p>
+    </div>
+    <div class="masonry reveal">
+      <a href="https://www.instagram.com/alzuhanafragrance/" target="_blank" rel="noopener" class="m1"><img src="assets/korvex_edit.jpg" alt="Korvex" /></a>
+      <a href="https://www.instagram.com/alzuhanafragrance/" target="_blank" rel="noopener"><img src="assets/avior_edit.jpg" alt="Avior" /></a>
+      <a href="https://www.instagram.com/alzuhanafragrance/" target="_blank" rel="noopener"><img src="assets/velina_edit.jpg" alt="Velina" /></a>
+      <a href="https://www.instagram.com/alzuhanafragrance/" target="_blank" rel="noopener"><img src="assets/amoura_edit.jpg" alt="Amoura" /></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta" id="contact">
+  <div class="final-bg"></div>
+  <div class="final-inner">
+    <span class="label reveal">Ready When You Are</span>
+    <h2 class="reveal">FIND THE SCENT<br>THAT FEELS LIKE YOU.</h2>
+    <a href="https://wa.link/g0c593" target="_blank" rel="noopener" class="btn btn-primary reveal">Order on WhatsApp</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <div class="footer-logo">AL ZUHANA</div>
+      <p>Premium long-lasting perfumes. Secret ingredient from London. Premium imported scents.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="#collection">Collection</a></li>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#discover">Fragrance</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="https://www.instagram.com/alzuhanafragrance/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://wa.link/g0c593" target="_blank" rel="noopener">WhatsApp</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Information</h5>
+      <ul>
+        <li><a href="#">Shipping &amp; Returns</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 Al Zuhana Fragrance. All rights reserved.</span>
+    <span>Udaipur, Rajasthan</span>
+  </div>
+</footer>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // header scroll state
+  const header = document.getElementById('siteHeader');
+  ScrollTrigger.create({
+    start: 'top -60',
+    end: 99999,
+    toggleClass: { targets: header, className: 'scrolled' }
+  });
+
+  // mobile nav
+  const mnav = document.getElementById('mnav');
+  document.getElementById('mnavToggle').addEventListener('click', () => mnav.classList.add('open'));
+  document.getElementById('mnavClose').addEventListener('click', () => mnav.classList.remove('open'));
+  mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mnav.classList.remove('open')));
+
+  // hero entrance sequence
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  tl.to('.hero-title .line-inner', { y: '0%', duration: 1.1, stagger: 0.12 })
+    .to('#heroEyebrow', { opacity: 1, y: 0, duration: 0.7 }, 0.1)
+    .to('#heroSub', { opacity: 1, y: 0, duration: 0.8 }, '-=0.7')
+    .to('#heroCtas', { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
+    .to('#heroVisual', { opacity: 1, y: 0, duration: 1.1 }, '-=0.9');
+
+  // marquee
+  const track = document.getElementById('marqueeTrack');
+  gsap.to(track, { xPercent: -50, duration: 28, ease: 'linear', repeat: -1 });
+
+  // scroll reveals
+  gsap.utils.toArray('.reveal').forEach((el) => {
+    gsap.fromTo(el, { opacity: 0, y: 28 }, {
+      opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 85%' }
+    });
+  });
+
+  // subtle parallax on hero visual
+  gsap.to('.hero-visual img', {
+    yPercent: 8, ease: 'none',
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+  });
+
+  // fragrance discovery filter
+  const chips = document.querySelectorAll('.chip');
+  const items = document.querySelectorAll('.discover-item');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const f = chip.dataset.filter;
+      items.forEach(item => {
+        const tags = item.dataset.tag;
+        const show = f === 'all' || tags.includes(f);
+        gsap.to(item, { opacity: show ? 1 : 0.18, duration: 0.4 });
+      });
+    });
+  });
+</script>
+</body>
+</html>
